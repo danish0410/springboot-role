@@ -1,6 +1,8 @@
 @Library('common-lib-springboot@feature') _ 
 import org.commonlibspringboot.*
 
+def app = null  // ✅ Global declaration
+
 pipeline {
   agent any
 
