@@ -1,13 +1,13 @@
-@Library('common-lib-unified@feature') _
-import org.commonlibunified.*
+@Library('common-lib-springboot@feature') _ 
+import org.commonlibspringboot.*
 
-def app = null  // ✅ Shared library instance
+def app = null  // ✅ Global declaration
 
 pipeline {
   agent any
 
   tools {
-    git 'Git'
+    git 'Git'  // 👈 Refers to the Git tool name you configured in Jenkins
   }
 
   parameters {
@@ -62,17 +62,6 @@ pipeline {
       steps {
         script {
           app.preRunDebug()
-        }
-      }
-    }
-
-    stage('Start MySQL (if needed)') {
-      when {
-        expression { app?.appType == 'springboot' }
-      }
-      steps {
-        script {
-          app.startMySQLContainer()
         }
       }
     }
